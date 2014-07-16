@@ -1,0 +1,25 @@
+typedef struct _php_extension_lists {
+   zend_llist engine;   // zend_extensions
+   zend_llist functions; // extensions
+} php_extension_lists;
+
+struct _zend_ini_entry {
+   int module_number;
+   int modifiable;
+   char *name;
+   uint name_length;
+   ZEND_INI_MH((*on_modify));
+   void *mh_arg1;
+   void *mh_arg2;
+   void *mh_arg3;
+
+   char *value;
+   uint value_length;
+
+   char *orig_value;
+   uint orig_value_length;
+   int orig_modifiable;
+   int modified;
+
+   void (*displayer)(zend_ini_entry *ini_entry, int type);
+};

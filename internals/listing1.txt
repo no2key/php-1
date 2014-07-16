@@ -1,0 +1,83 @@
+struct _sapi_module_struct {
+   char *name;
+   char *pretty_name;
+
+   int (*startup)(struct _sapi_module_struct *sapi_module);
+   int (*shutdown)(struct _sapi_module_struct *sapi_module);
+
+   int (*activate)(TSRMLS_D);
+   int (*deactivate)(TSRMLS_D);
+
+   int (*ub_write)(
+      const char *str,
+      unsigned int str_length TSRMLS_DC
+   );
+   void (*flush)(void *server_context);
+   struct stat *(*get_stat)(TSRMLS_D);
+   char *(*getenv)(char *name, size_t name_len TSRMLS_DC);
+
+   void (*sapi_error)(int type, const char *error_msg, ...);
+
+   int (*header_handler)(
+      sapi_header_struct *sapi_header,
+      sapi_header_op_enum op,
+      sapi_headers_struct *sapi_headers TSRMLS_DC
+   );
+   int (*send_headers)(
+      sapi_headers_struct *sapi_headers TSRMLS_DC
+   );
+   void (*send_header)(
+      sapi_header_struct *sapi_header,
+      void *server_context TSRMLS_DC
+   );
+
+   int (*read_post)(
+      char *buffer,
+      uint count_bytes TSRMLS_DC
+   );
+   char *(*read_cookies)(TSRMLS_D);
+
+   void (*register_server_variables)(
+      zval *track_vars_array TSRMLS_DC
+   );
+   void (*log_message)(char *message);
+   time_t (*get_request_time)(TSRMLS_D);
+   void (*terminate_process)(TSRMLS_D);
+
+   char *php_ini_path_override;
+
+   void (*block_interruptions)(void);
+   void (*unblock_interruptions)(void);
+
+   void (*default_post_reader)(TSRMLS_D);
+   void (*treat_data)(
+      int arg,
+      char *str,
+      zval *destArray TSRMLS_DC
+   );
+   char *executable_location;
+
+   int php_ini_ignore;
+
+   int (*get_fd)(int *fd TSRMLS_DC);
+
+   int (*force_http_10)(TSRMLS_D);
+
+   int (*get_target_uid)(uid_t * TSRMLS_DC);
+   int (*get_target_gid)(gid_t * TSRMLS_DC);
+
+   unsigned int (*input_filter)(
+      int arg,
+      char *var,
+      char **val,
+      unsigned int val_len,
+      unsigned int *new_val_len TSRMLS_DC
+   );
+
+   void (*ini_defaults)(HashTable *configuration_hash);
+   int phpinfo_as_text;
+
+   char *ini_entries;
+   const zend_function_entry *additional_functions;
+   unsigned int (*input_filter_init)(TSRMLS_D);
+};
