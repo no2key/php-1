@@ -1,6 +1,6 @@
-**annotations for php **
+annotations for php
 
- --  the first choose should be "doctrine/annotations"
+ the first choose should be "doctrine/annotations"
 
 
 1.https://github.com/doctrine/annotations
