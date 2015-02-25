@@ -1,0 +1,9 @@
+{
+	"name": "wacai/wacai",
+	"description": "wacai bi php used vendor",
+	"require":
+	{
+		"php": ">=5.4.0",
+		"recki-ct/recki-ct": "dev-master"
+	}
+}

@@ -1,0 +1,86 @@
+function mandelbrotIteration long
+param $1 double
+param $2 double
+param $3 long
+begin
+const $6 numeric 0
+const $8 bool 
+const $14 numeric 4
+const $18 numeric 0
+const $25 numeric 2
+const $28 numeric 1
+var $4 double
+assign $1 $4
+var $5 double
+assign $2 $5
+var $7 numeric
+assign $6 $7
+label @1
+var $9 bool
+assign $8 $9
+var $10 bool
+< $7 $3 $10
+jumpz $10 @2
+var $11 double
+* $1 $1 $11
+var $12 double
+* $11 $2 $12
+var $13 double
+* $12 $2 $13
+free $11
+var $15 bool
+< $13 $14 $15
+free $12
+assign $15 $9
+free $13
+free $15
+label @2
+free $10
+var $16 bool
+! $9 $16
+free $9
+jumpz $16 @3
+free $1
+free $2
+free $4
+free $5
+free $16
+label @4
+var $17 bool
+== $7 $3 $17
+free $3
+jumpz $17 @5
+assign $18 $7
+label @5
+free $17
+return $7
+label @3
+var $19 double
+* $1 $1 $19
+var $20 double
+* $2 $2 $20
+var $21 double
+- $19 $20 $21
+var $22 double
++ $21 $4 $22
+free $20
+free $19
+var $23 double
+assign $22 $23
+free $21
+var $24 double
+* $2 $1 $24
+free $22
+var $26 double
+* $24 $25 $26
+var $27 double
++ $26 $5 $27
+free $24
+assign $27 $2
+free $26
+assign $23 $1
+free $27
++ $7 $28 $7
+free $23
+jump @1
+end
